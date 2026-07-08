@@ -1,0 +1,21 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'style.css' %}">
+{% if messages %}
+    <ul style="list-style: none; padding: 0;">
+        {% for message in messages %}
+            <li style="background-color: #d4edda; color: #155724; padding: 10px; margin: 10px auto; width: 50%; border: 1px solid #c3e6cb; border-radius: 5px;">
+                {{ message }}
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+
+<h2>Login</h2>
+<form method="post">
+  {% csrf_token %}
+  Username: <input type="text" name="username"><br>
+  Password: <input type="password" name="password"><br>
+  <button type="submit">Login</button>
+</form>
+<a href="{% url 'register' %}">Don't have an account? Register</a>

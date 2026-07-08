@@ -1,0 +1,67 @@
+
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>All Blood Requests</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+
+<body class="bg-light">
+<div class="container mt-5">
+    <h2 class="mb-4 text-center">🩸 All Blood Requests</h2>
+    <div class="text-right mb-3">
+        <a href="{% url 'home' %}" class="btn btn-primary">🏠 Back to Home</a>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped table-hover shadow">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">User</th>
+                    <th scope="col">Blood Group</th>
+                    <th scope="col">Units</th>
+                    <th scope="col">Requested At</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for req in requests %}
+                <tr>
+                    <td>{{ req.id }}</td>
+                    <td>{{ req.user.username }}</td>
+                    <td>{{ req.blood_group }}</td>
+                    <td>{{ req.units }}</td>
+                    <td>{{ req.requested_at|date:"Y-m-d H:i" }}</td>
+                    <td>
+                        {% if req.status == "Pending" %}
+                            <span class="badge badge-warning">{{ req.status }}</span>
+                        {% else %}
+                            <span class="badge badge-success">{{ req.status }}</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if req.status == "Pending" %}
+                            <form method="post" action="{% url 'mark_fulfilled' req.id %}">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-sm btn-success">Mark Fulfilled</button>
+                            </form>
+                        {% else %}
+                            <span class="text-success">Done</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="7" class="text-center">No requests found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

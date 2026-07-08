@@ -1,0 +1,12 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'style.css' %}">
+
+
+<h2>Request Blood</h2>
+<form method="post">
+  {% csrf_token %}
+  Blood Group: <input type="text" name="blood_group"><br>
+  Units: <input type="number" name="units"><br>
+  <button type="submit">Request</button>
+</form>
+<a href="{% url 'home' %}">Back to Home</a>
