@@ -378,24 +378,24 @@ The application is intended to demonstrate the use of Django and database techno
 
 ### 📝 User Registration
 
-![User Registration](register.png)
+![User Registration](register.jpeg)
 
 ---
 
 ### 🔐 User Login
 
-![User Login](login.png)
+![User Login](login.jpeg)
 
 ---
 
 ### 🩸 User Dashboard
 
-![User Dashboard](dashboard.png)
+![User Dashboard](dashboard.jpeg)
 
 ---
 
 ### 📋 Blood Request Management
 
-![Blood Request Management](blood-requests.png)
+![Blood Request Management](blood-requests.jpeg)
 
 ---
